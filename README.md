@@ -5,7 +5,9 @@ Don't reinvent the printing wheel. Use the Breezy iOS SDK to **let your users pr
 
 Setup
 ----------------
-The BreezySDK is bundled with the ASIHTTPRequest & JSON libraries. If you are already using them in your project skip this step as you've probably already added these.  If you are using another library to handle REST POST operations the Breezy SDK code must be modified to use your library. If you have any problems please let us know, we are happy to help!
+
+
+The BreezySDK is bundled with the [ASIHTTP](https://github.com/pokeb/asi-http-request/tree) & [SBJSON](https://github.com/stig/json-framework/) libraries. If you are already using them in your project skip this step as you've probably already added these.  If you are using another library to handle REST POST operations the Breezy SDK code must be modified to use your library. If you have any problems please let us know, we are happy to help!
 
 Add the following files to "Link Binary With Libraries":
 
