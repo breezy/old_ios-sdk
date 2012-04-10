@@ -17,16 +17,13 @@ NSOperationQueue *requestQueue;
 
 @synthesize delegate, requestQueue;
 
-#pragma logic
 -(void)sendDocumentToBreezy:(NSURL *)documentUrl:(UIProgressView *)progressIndicator
 {
     //Breezy will provide you with a clientId and ClientSecret that can be used in production
     //The keys provided in this application will only work in test environment.
     NSString *testBaseUrl = [[NSString alloc] initWithString:@"https://apitest.breezy.com/"];
-    NSString *prodBaseURL = [[NSString alloc] initWithString:@"https://api.breezy.com/"]; 
     NSString *clientId =  [[NSString alloc] initWithString:@"7663e72b-2296-4ab0-8192-def01c99d32f"];
     NSString *clientSecret =  [[NSString alloc] initWithString:@"1f1a5f7e-f642-41a2-ad1e-7d5d3e7df775"];
-    
     
     Document *documentToPrint = [[Document alloc] initWithDocumentPath:documentUrl];;
     NSMutableData *mutableDocData = [[NSMutableData alloc] initWithData:documentToPrint.documentData];
@@ -95,7 +92,6 @@ NSOperationQueue *requestQueue;
 //delegate method used for showing that the printing is complete
 -(void)sendingDocumentComplete: (int)documentId
 {
-     
     if([[self delegate] respondsToSelector:@selector(sendingDocumentComplete:)])
     {
         [[self delegate] sendingDocumentComplete:documentId];

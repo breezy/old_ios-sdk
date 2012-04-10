@@ -1,14 +1,14 @@
 Breezy iOS SDK v1
 ============================
 
-The Breezy iOS SDK allows app developers to easily integrate Breezy into new and existing apps.  The approach is simple.  Use our SDK to add a 'Print With Breezy' button into your app. When the user clicks the 'Print With Breezy' button we upload their document to our secure cloud storage location where the document is immediately encrypted and return a document_id.  Use the document_id to call open the Breezy app using our custom URL Schema.  If the Breezy app isn't installed on the device prompt the user to download Breezy.
-
+Don't reinvent the printing wheel. Use the Breezy iOS SDK to **let your users print documents in minutes**!
 
 Setup
 ----------------
-The BreezySDK is bundled with the ASIHTTPRequest & JSON libraries. If you are already using them in your project skip this step as you've probably already added these.  If you are using another library to handle REST POST methods the Breezy SDK code must be to use your library.  If you have any problems please let us know, we are happy to help.
+The BreezySDK is bundled with the ASIHTTPRequest & JSON libraries. If you are already using them in your project skip this step as you've probably already added these.  If you are using another library to handle REST POST operations the Breezy SDK code must be modified to use your library. If you have any problems please let us know, we are happy to help!
 
-Add the following files to "Link Binary With Libraries"
+Add the following files to "Link Binary With Libraries":
+
 - Open the settings for your target by clicking on the blue bar at the very top of the Xcode sidebar:
 - Open the Build Phases tab, expand the box labeled Link Binary With Libraries then click the plus button.
 - Add the following: 
@@ -22,34 +22,37 @@ How to use
 ----------------
 
 ### Step 1 - Import Breezy into the desired .h file
-```objective-c
+```objc
 #import "PrintModule.h"
 #import "PrintModuleDelegate.h"
 ```
 
 ### Step 2 - Add the Breezy Delegate Module to the desired .h file
 Add the following delegates into your view controller
-PrintModuleDelegate, UIAlertViewDelegate
+```objective-c
+<PrintModuleDelegate, UIAlertViewDelegate>
+```
 
 ### Step 3 - Implement Breezy Callback methods in the desired .m file
-```objective-c
+```objc
 //delegate fired when document start sending
 -(void)sendingDocument 
 ```
 
-```objective-c
+```objc
 //delegate fired when document fails
 -(void)sendingDocumentFailed: (NSError *)error 
 ```
 
-```objective-c
+```objc
 //delegate fired when document is sent successfully, returns documentId
 -(void)sendingDocumentComplete:(int)documentId; 
 ```
 
 ### Step 4 - Allocate an instance of Breezy, set the delegate, and pass the NSURL to Breezy
-```objective-c
+```objc
 	//aURL = NSURL path to the document
+	//progressView = UIProgressView that will be reflect the progress of the document upload
     PrintModule *breezy = [[PrintModule alloc] init];
     breezy.delegate = self;
     [breezy sendDocumentToBreezy:aURL:progressView];
@@ -59,7 +62,7 @@ Example
 ----------------
 
 For a working example see the Breezy SDK Example App
-```objective-c
+```objc
 - (IBAction)printWithBreezy 
 {
     //Confirm Breezy is installed on iOS before launching the Breezy app. 
@@ -78,25 +81,23 @@ For a working example see the Breezy SDK Example App
     }
     else
     {
+	//aURL = NSURL path to the document
     PrintModule *breezy = [[PrintModule alloc] init];
     breezy.delegate = self;
-    [breezy sendDocumentToBreezy:imageURL:progressView];
+    [breezy sendDocumentToBreezy:aURL:progressView];
     }
 }
 ```
 
-```objective-c
+```objc
 //delegate fired when document start sending
 -(void)sendingDocument
 {   
-    //Show a waiting dialog to inform the user the document is loading
-    [selectButton setHidden:YES];
-    [printButton setHidden:YES];
-    [progressView setHidden:NO];
+    //Show UIProgressView to inform the user the document is loading
 }
 ```
 
-```objective-c
+```objc
 //delegate fired when document fails
 -(void)sendingDocumentFailed: (NSError *)error
 {
@@ -109,14 +110,10 @@ For a working example see the Breezy SDK Example App
 }
 ```
 
-```objective-c
+```objc
 //delegate fired when document is sent successfully
 -(void)sendingDocumentComplete:(int)documentId;
 {
-    [selectButton setHidden:NO];
-    [printButton setHidden:NO];
-    [progressView setHidden:YES];
-    
 	//The Breezy app will return to your application when printing is complete. Just pass your URLSchema name here
 	NSString *callBackUrlSchema = [[NSString alloc] initWithString:@"breezyphoto"];
 
@@ -125,7 +122,8 @@ For a working example see the Breezy SDK Example App
     [[UIApplication sharedApplication] openURL:url];
     [stringURL release];
 }
-
+```
+```objc
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (alertView.tag == 1 && buttonIndex == 1) {
