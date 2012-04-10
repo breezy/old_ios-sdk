@@ -6,7 +6,6 @@ Don't reinvent the printing wheel. Use the Breezy iOS SDK to **let your users pr
 Setup
 ----------------
 
-
 The BreezySDK is bundled with the [ASIHTTP](https://github.com/pokeb/asi-http-request/tree) & [SBJSON](https://github.com/stig/json-framework/) libraries. If you are already using them in your project skip this step as you've probably already added these.  If you are using another library to handle REST POST operations the Breezy SDK code must be modified to use your library. If you have any problems please let us know, we are happy to help!
 
 Add the following files to "Link Binary With Libraries":
@@ -20,6 +19,16 @@ Add the following files to "Link Binary With Libraries":
 - CoreGraphics.framework
 - libz.dylib
 
+Objective
+----------------
+- To POST a document to the Breezy Cloud (document is encrypted when received) and get back a document_id.
+- Pass the document_id to the Breezy App if it's installed on the device
+- If your app uses a CustomURL schema the Breezy App will return the user to your app, just pass the schema name
+
+Breezy URL Schema:
+```
+breezy://document_id=123456&customUrl=CustomSchemaName
+```
 How to use
 ----------------
 
