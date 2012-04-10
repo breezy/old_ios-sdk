@@ -31,7 +31,7 @@ How to use
 
 ### Step 2 - Add the Breezy Delegate Module to the desired .h file
 Add the following delegates into your view controller
-```objective-c
+```objc
 <PrintModuleDelegate, UIAlertViewDelegate>
 ```
 
