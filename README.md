@@ -21,9 +21,9 @@ Add the following files to "Link Binary With Libraries":
 
 Objective
 ----------------
-- 1. To POST a document to the Breezy Cloud (document is encrypted when received) and get back a document_id.
-- 2. Pass the document_id to the Breezy App if it's installed on the device
-- 3. If your app uses a CustomURL schema the Breezy App will return the user to your app, just pass the schema name
+1. To POST a document to the Breezy Cloud (document is encrypted when received) and get back a document_id.
+2. Pass the document_id to the Breezy App if it's installed on the device
+3. If your app uses a CustomURL schema the Breezy App will return the user to your app, just pass the schema name
 
 - Breezy URL Schema:
 ```
