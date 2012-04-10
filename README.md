@@ -74,6 +74,7 @@ Example
 ----------------
 
 For a working example see the Breezy SDK Example App
+
 ```objc
 - (IBAction)printWithBreezy 
 {
