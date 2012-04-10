@@ -3,6 +3,8 @@ Breezy iOS SDK v1
 
 Don't reinvent the printing wheel. Use the Breezy iOS SDK to **let your users print documents in minutes**!
 
+For a working example see the [Breezy SDK Example App](https://github.com/breezy/Breezy-iOS-SDK-Example)
+
 Setup
 ----------------
 
