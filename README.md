@@ -21,20 +21,20 @@ Add the following files to "Link Binary With Libraries"
 How to use
 ----------------
 
-### Step 1 .h ### 
+### Step 1 .h
 #import "PrintModule.h"
 #import "PrintModuleDelegate.h"
 
-### Step 2 .h ###
+### Step 2 .h
 Add the following delegates into your view controller
 PrintModuleDelegate, UIAlertViewDelegate
 
-### Step 3 Implement Breezy Callback methods in .m ###
+### Step 3 Implement Breezy Callback methods in .m
 -(void)sendingDocument //delegate fired when document start sending
 -(void)sendingDocumentFailed: (NSError *)error //delegate fired when document fails
 -(void)sendingDocumentComplete:(int)documentId; //delegate fired when document is sent successfully, returns documentId
 
-### Step 4 .m ###
+### Step 4 .m
 
     PrintModule *breezy = [[PrintModule alloc] init];
     breezy.delegate = self;
@@ -44,7 +44,7 @@ Example
 ----------------
 
 For a working example see the Breezy SDK Example App
-```bash
+```objective-c
 - (IBAction)printWithBreezy {
     
     //Confirm Breezy is installed on iOS before launching the Breezy app. 
