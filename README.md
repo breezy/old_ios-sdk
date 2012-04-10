@@ -22,23 +22,37 @@ How to use
 ----------------
 
 ### Step 1 .h
+```objective-c
 #import "PrintModule.h"
 #import "PrintModuleDelegate.h"
+```
 
 ### Step 2 .h
 Add the following delegates into your view controller
 PrintModuleDelegate, UIAlertViewDelegate
 
 ### Step 3 Implement Breezy Callback methods in .m
--(void)sendingDocument //delegate fired when document start sending
--(void)sendingDocumentFailed: (NSError *)error //delegate fired when document fails
--(void)sendingDocumentComplete:(int)documentId; //delegate fired when document is sent successfully, returns documentId
+```objective-c
+//delegate fired when document start sending
+-(void)sendingDocument 
+```
+
+```objective-c
+//delegate fired when document fails
+-(void)sendingDocumentFailed: (NSError *)error 
+```
+
+```objective-c
+//delegate fired when document is sent successfully, returns documentId
+-(void)sendingDocumentComplete:(int)documentId; 
+```
 
 ### Step 4 .m
-
+```objective-c
     PrintModule *breezy = [[PrintModule alloc] init];
     breezy.delegate = self;
     [breezy sendDocumentToBreezy:imageURL:progressView];
+```
 
 Example
 ----------------
@@ -68,7 +82,9 @@ For a working example see the Breezy SDK Example App
     [breezy sendDocumentToBreezy:imageURL:progressView];
     }
 }
+```
 
+```objective-c
 //delegate fired when document start sending
 -(void)sendingDocument
 {   
@@ -88,7 +104,9 @@ For a working example see the Breezy SDK Example App
                                             otherButtonTitles:nil];
     [message show];
 }
+```
 
+```objective-c
 //delegate fired when document is sent successfully
 -(void)sendingDocumentComplete:(int)documentId;
 {
