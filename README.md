@@ -73,7 +73,7 @@ Add the following delegates into your view controller
 Example
 ----------------
 
-For a working example see the Breezy SDK Example App
+For a working example see the [Breezy SDK Example App](https://github.com/breezy/Breezy-iOS-SDK-Example)
 
 ```objc
 - (IBAction)printWithBreezy 
