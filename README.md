@@ -21,17 +21,17 @@ Add the following files to "Link Binary With Libraries"
 How to use
 ----------------
 
-### Step 1 .h
+### Step 1 - Import Breezy into the desired .h file
 ```objective-c
 #import "PrintModule.h"
 #import "PrintModuleDelegate.h"
 ```
 
-### Step 2 .h
+### Step 2 - Add the Breezy Delegate Module to the desired .h file
 Add the following delegates into your view controller
 PrintModuleDelegate, UIAlertViewDelegate
 
-### Step 3 Implement Breezy Callback methods in .m
+### Step 3 - Implement Breezy Callback methods in the desired .m file
 ```objective-c
 //delegate fired when document start sending
 -(void)sendingDocument 
@@ -47,11 +47,12 @@ PrintModuleDelegate, UIAlertViewDelegate
 -(void)sendingDocumentComplete:(int)documentId; 
 ```
 
-### Step 4 .m
+### Step 4 - Allocate an instance of Breezy, set the delegate, and pass the NSURL to Breezy
 ```objective-c
+	//aURL = NSURL path to the document
     PrintModule *breezy = [[PrintModule alloc] init];
     breezy.delegate = self;
-    [breezy sendDocumentToBreezy:imageURL:progressView];
+    [breezy sendDocumentToBreezy:aURL:progressView];
 ```
 
 Example
@@ -59,8 +60,8 @@ Example
 
 For a working example see the Breezy SDK Example App
 ```objective-c
-- (IBAction)printWithBreezy {
-    
+- (IBAction)printWithBreezy 
+{
     //Confirm Breezy is installed on iOS before launching the Breezy app. 
     //If it's not installed then alert the user to download the app.
     NSString *stringURL = [[NSString alloc] initWithString:@"breezy://"];
@@ -93,7 +94,9 @@ For a working example see the Breezy SDK Example App
     [printButton setHidden:YES];
     [progressView setHidden:NO];
 }
+```
 
+```objective-c
 //delegate fired when document fails
 -(void)sendingDocumentFailed: (NSError *)error
 {
@@ -114,7 +117,10 @@ For a working example see the Breezy SDK Example App
     [printButton setHidden:NO];
     [progressView setHidden:YES];
     
-    NSString *stringURL = [[NSString alloc] initWithFormat:@"breezy://document_id=%i&customUrl=%@",documentId,@"breezyphoto"];
+	//The Breezy app will return to your application when printing is complete. Just pass your URLSchema name here
+	NSString *callBackUrlSchema = [[NSString alloc] initWithString:@"breezyphoto"];
+
+    NSString *stringURL = [[NSString alloc] initWithFormat:@"breezy://document_id=%i&customUrl=%@",documentId,callBackUrlSchema];
     NSURL *url = [NSURL URLWithString:stringURL];
     [[UIApplication sharedApplication] openURL:url];
     [stringURL release];
