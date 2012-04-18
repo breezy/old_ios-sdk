@@ -72,6 +72,9 @@ Add the following delegates into your view controller
     [breezy sendDocumentToBreezy:aURL:progressView];
 ```
 
+### Step 5 - Request production API credentials from Breezy
+Breezy will provide you with a clientId and ClientSecret that can be used in production. The keys provided in this application will only work in the test environment.
+
 Example
 ----------------
 
