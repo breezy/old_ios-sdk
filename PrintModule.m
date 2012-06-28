@@ -47,7 +47,6 @@ NSOperationQueue *requestQueue;
     [[self requestQueue] addOperation:request];
     
     [testBaseUrl release];
-    [prodBaseURL release];
     [clientId release];
     [clientSecret release];
     
@@ -115,6 +114,7 @@ NSOperationQueue *requestQueue;
         [request clearDelegatesAndCancel];
         request.uploadProgressDelegate = nil;
     }
+    self.requestQueue = nil;
     
     [super dealloc];
 }
